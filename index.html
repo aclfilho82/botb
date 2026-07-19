@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)file:///C:/Users/090110144/Downloads/Betania_UNINASSAU_Salvador_Baianes_v2.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071d49">
+<title>Betânia | UNINASSAU Salvador</title>
+<style>
+:root{--navy:#071d49;--blue:#123b82;--gold:#f2b705;--bg:#edf2f8;--line:#dce4ef;--text:#172033;--muted:#667085;--bot:#f3f5f8;--user:#dce9ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:16px;font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top right,rgba(242,183,5,.2),transparent 26rem),linear-gradient(145deg,#e8eef7,#f8fafc);color:var(--text)}
+.app{width:min(930px,100%);height:min(920px,calc(100vh - 32px));background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 24px 70px rgba(7,29,73,.2);display:grid;grid-template-rows:auto 1fr auto;border:1px solid rgba(7,29,73,.08)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#ffd65d,var(--gold));color:var(--navy);font-weight:900}.brand b{display:block}.brand small{color:rgba(255,255,255,.75)}
+.actions{display:flex;gap:7px}.headbtn{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;border-radius:10px;padding:8px 10px;font-weight:700}
+#chat{overflow:auto;padding:20px;background:linear-gradient(rgba(255,255,255,.93),rgba(255,255,255,.93)),radial-gradient(circle,#dfe6ef 1.3px,transparent 1.5px);background-size:auto,22px 22px}
+.row{display:flex;align-items:flex-end;gap:8px;margin:10px 0}.row.user{justify-content:flex-end}.avatar{width:34px;height:34px;border-radius:10px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto}
+.bubble{max-width:82%;padding:13px 15px;border-radius:17px;font-size:14px;line-height:1.55;box-shadow:0 5px 16px rgba(16,24,40,.06)}.bot .bubble{background:var(--bot);border-bottom-left-radius:5px}.user .bubble{background:var(--user);border-bottom-right-radius:5px}.bubble h3{margin:0 0 8px;color:var(--navy)}.bubble p{margin:0 0 8px}.bubble ul{margin:7px 0 0;padding-left:20px}
+.options{display:flex;flex-wrap:wrap;gap:8px;margin:9px 0 15px 42px}.opt{border:1px solid #cbd7e7;background:#fff;color:var(--navy);border-radius:999px;padding:9px 12px;font-weight:750;font-size:13px}.opt:hover{background:#edf3ff}
+.card{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;display:grid;gap:6px}.card strong{color:var(--navy)}.tag{display:inline-flex;padding:6px 9px;border-radius:999px;background:#fff4c9;color:#5c4700;font-size:12px;font-weight:800;margin:3px}
+form{display:grid;grid-template-columns:1fr auto;gap:9px;padding:12px;border-top:1px solid var(--line)}input{border:1px solid var(--line);border-radius:13px;padding:13px 14px;outline:0}input:focus{border-color:#9eb5d7;box-shadow:0 0 0 3px #edf3ff}.send{border:0;border-radius:13px;background:var(--gold);color:var(--navy);font-weight:900;min-width:50px;font-size:18px}
+.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#98a2b3;margin:0 2px;animation:pulse 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,70%,100%{opacity:.3;transform:none}35%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:640px){body{padding:0}.app{height:100vh;border-radius:0}#chat{padding:14px 11px}.bubble{max-width:89%}.options{margin-left:0}.brand small{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="logo">UN</div><div><b>Betânia</b><small>Tô por aqui pra lhe dar uma força</small></div></div><div class="actions"><button class="headbtn" id="home">Início</button><button class="headbtn" id="reset">Reiniciar</button></div></header>
+<main id="chat" aria-live="polite"><div class="row bot"><div class="avatar">UN</div><div class="bubble"><h3>Ô, seja muito bem-vindo(a) à UNINASSAU Salvador! 😊</h3><p>Eu sou Betânia. Tô aqui pra lhe dar uma força no que precisar.</p><p>Antes da gente começar esse bate-papo, me diga uma coisa: como você se chama?</p></div></div></main>
+<form id="form"><input id="input" autocomplete="off" placeholder="Digite sua pergunta ou escolha uma opção..."><button class="send">➤</button></form>
+</div>
+<script>
+let userName="";
+let awaitingName=true;
+const courses={"Administração": {"icon": "📊", "summary": "Prepara profissionais para planejar, organizar e melhorar resultados em empresas e organizações.", "areas": ["Gestão empresarial", "Recursos humanos", "Marketing", "Finanças", "Empreendedorismo"]}, "Biomedicina": {"icon": "🔬", "summary": "Integra conhecimentos biológicos e da saúde para investigação, diagnóstico e prevenção de doenças.", "areas": ["Análises clínicas", "Biomedicina estética", "Imagenologia", "Genética", "Pesquisa científica"]}, "Direito": {"icon": "⚖️", "summary": "Desenvolve conhecimento jurídico, pensamento crítico e capacidade de interpretar e aplicar as leis.", "areas": ["Advocacia", "Magistratura", "Ministério Público", "Defensoria Pública", "Consultoria jurídica"]}, "Educação Física": {"icon": "🏃", "summary": "Prepara profissionais para promover saúde, desempenho e qualidade de vida por meio do exercício.", "areas": ["Academias", "Treinamento esportivo", "Personal training", "Gestão esportiva", "Programas de saúde e lazer"]}, "Enfermagem": {"icon": "🩺", "summary": "Forma profissionais para prestar assistência, promover saúde e coordenar cuidados.", "areas": ["Assistência hospitalar", "Atenção básica", "Urgência e emergência", "Saúde da família", "Gestão em enfermagem"]}, "Farmácia": {"icon": "💊", "summary": "Prepara profissionais para atuar com medicamentos, análises e cuidado farmacêutico.", "areas": ["Farmácia comunitária", "Farmácia hospitalar", "Análises clínicas", "Indústria farmacêutica", "Vigilância sanitária"]}, "Fisioterapia": {"icon": "🦿", "summary": "Forma profissionais para prevenir e tratar alterações do movimento e auxiliar na reabilitação.", "areas": ["Fisioterapia ortopédica", "Fisioterapia neurológica", "Fisioterapia respiratória", "Fisioterapia esportiva", "Fisioterapia hospitalar"]}, "Fonoaudiologia": {"icon": "🗣️", "summary": "Atua na prevenção, avaliação e tratamento de dificuldades de comunicação, audição, voz e deglutição.", "areas": ["Linguagem", "Audiologia", "Voz", "Motricidade orofacial", "Fonoaudiologia hospitalar"]}, "Medicina Veterinária": {"icon": "🐾", "summary": "Forma profissionais para cuidar da saúde animal, produção, alimentos e saúde pública.", "areas": ["Clínica de pequenos animais", "Clínica de grandes animais", "Produção animal", "Inspeção de alimentos", "Saúde pública veterinária"]}, "Nutrição": {"icon": "🥗", "summary": "Forma profissionais para cuidar da alimentação e da saúde de pessoas, grupos e comunidades.", "areas": ["Nutrição clínica", "Alimentação coletiva", "Nutrição esportiva", "Saúde pública", "Indústria de alimentos"]}, "Odontologia": {"icon": "🦷", "summary": "Forma cirurgiões-dentistas para prevenir, diagnosticar e tratar problemas relacionados à saúde bucal.", "areas": ["Clínica geral", "Ortodontia", "Endodontia", "Odontopediatria", "Cirurgia bucomaxilofacial"]}, "Psicologia": {"icon": "🧠", "summary": "Forma profissionais para compreender o comportamento humano e promover saúde mental.", "areas": ["Psicologia clínica", "Psicologia hospitalar", "Psicologia organizacional", "Psicologia escolar", "Psicologia jurídica"]}, "Sistemas de Informação": {"icon": "💻", "summary": "Combina tecnologia e gestão para desenvolver sistemas, organizar dados e criar soluções digitais.", "areas": ["Desenvolvimento de software", "Análise de sistemas", "Banco de dados", "Segurança da informação", "Gestão de projetos de TI"]}, "Terapia Ocupacional": {"icon": "👐", "summary": "Prepara profissionais para promover autonomia, inclusão e qualidade de vida por meio de atividades terapêuticas.", "areas": ["Reabilitação física", "Saúde mental", "Saúde do idoso", "Desenvolvimento infantil", "Inclusão social"]}};
+const chat=document.getElementById("chat"),input=document.getElementById("input");
+const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+function bottom(){chat.scrollTo({top:chat.scrollHeight,behavior:"smooth"})}
+function msg(html,type="bot"){const r=document.createElement("div");r.className="row "+type;r.innerHTML=type==="bot"?`<div class="avatar">UN</div><div class="bubble">${html}</div>`:`<div class="bubble">${esc(html)}</div>`;chat.appendChild(r);bottom()}
+function opts(a){const d=document.createElement("div");d.className="options";d.innerHTML=a.map(x=>`<button class="opt" data-a="${esc(x.a)}">${esc(x.l)}</button>`).join("");chat.appendChild(d);bottom()}
+function type(cb){const r=document.createElement("div");r.className="row bot";r.innerHTML='<div class="avatar">UN</div><div class="bubble typing"><span></span><span></span><span></span></div>';chat.appendChild(r);bottom();setTimeout(()=>{r.remove();cb()},350)}
+const mainOptions=[
+{l:"🎓 Cursos",a:"cursos"},{l:"🗂️ CRA",a:"cra"},{l:"🤝 NAE",a:"nae"},{l:"👩‍🏫 Coordenação de Curso",a:"coord"},
+{l:"🌐 EaD",a:"ead"},{l:"💬 Tutoria DOL",a:"dol"},{l:"💼 Comercial",a:"comercial"},{l:"📚 Ubíqua",a:"ubiqua"},
+{l:"🎤 Peixe 30",a:"peixe"},{l:"▶️ IES Play",a:"iesplay"},{l:"🏛️ Direção",a:"direcao"}
+];
+function menu(){
+const greeting=userName?`, <b>${esc(userName)}</b>`:"";
+msg(`<h3>No que posso lhe ajudar${greeting}?</h3><p>Escolha um assunto aqui embaixo, viu? Se quiser voltar pro começo, é só digitar <b>voltar</b>.</p>`);
+opts(mainOptions)
+}
+function askName(){
+awaitingName=true;
+type(()=>msg("<h3>Ô, seja muito bem-vindo(a) à UNINASSAU Salvador! 😊</h3><p>Eu sou Betânia. Tô aqui pra lhe dar uma força no que precisar.</p><p>Antes da gente começar esse bate-papo, me diga uma coisa: como você se chama?</p>"))
+}
+function receiveName(name){
+userName=String(name||"").trim().split(/\s+/).slice(0,3).join(" ");
+awaitingName=false;
+type(()=>{
+msg(`<h3>Prazer lhe conhecer, ${esc(userName)}! 😊</h3><p>Fique à vontade, viu? Posso lhe ajudar com cursos, matrícula, setor comercial, CRA, coordenações e muito mais.</p>`);
+menu()
+})
+}
+function start(){askName()}
+function coursesMenu(){msg("<h3>🎓 Se ligue nos nossos cursos</h3><p>Escolha uma modalidade aí:</p>");opts([{l:"🏫 Graduação Presencial",a:"presencial"},{l:"🌐 Graduação EaD",a:"ead"},{l:"🎓 Pós-Graduação",a:"pos"},{l:"🛠️ Cursos Técnicos",a:"tecnicos"},{l:"🏠 Menu principal",a:"inicio"}])}
+function presencial(){msg("<h3>Graduação Presencial</h3><p>Escolha um curso e pegue a visão do que ele oferece e das principais áreas de atuação.</p>");opts(Object.entries(courses).map(([n,c])=>({l:c.icon+" "+n,a:"curso:"+n})).concat([{l:"🏠 Menu principal",a:"inicio"}]))}
+function course(n){const c=courses[n];msg(`<h3>${esc(c.icon)} ${esc(n)}</h3><p>Oxente, esse curso é massa! ${esc(c.summary)}</p><p><b>Pegue a visão das principais áreas de atuação:</b></p><ul>${c.areas.map(x=>"<li>"+esc(x)+"</li>").join("")}</ul>`);opts([{l:"👩‍🏫 Coordenação do curso",a:"coord:"+n},{l:"💼 Comercial",a:"comercial"},{l:"🎓 Outros cursos",a:"presencial"},{l:"🏠 Menu principal",a:"inicio"}])}
+function placeholder(title,extra=""){msg(`<h3>${title}</h3>${extra}<div class="card"><span><strong>Coordenador(a):</strong> XXXXXXXXXXXXXX</span><span><strong>Telefone:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span><span><strong>Horário de atendimento:</strong> XXXXXXXXXXXXXX</span></div>`);opts([{l:"🏠 Menu principal",a:"inicio"}])}
+function coordMenu(){msg("<h3>👩‍🏫 Coordenações de Curso</h3><p>Escolha o curso:</p>");opts(Object.entries(courses).map(([n,c])=>({l:c.icon+" "+n,a:"coord:"+n})).concat([{l:"🏠 Menu principal",a:"inicio"}]))}
+function coord(n){placeholder("Coordenação de "+esc(n),"<p>Consulte os dados oficiais e o horário de atendimento da coordenação.</p>")}
+function cra(){msg('<h3>🗂️ CRA — Central de Relacionamento com o Aluno</h3><p>A CRA lhe ajuda com matrícula, documentos, boletos, requerimentos, renovação, disciplinas e acesso aos serviços acadêmicos.</p><div class="card"><span><strong>Telefone:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span><span><strong>Horário:</strong> XXXXXXXXXXXXXX</span><span><strong>Local:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"📄 Documentos e requerimentos",a:"cra:docs"},{l:"💳 Boletos e vencimentos",a:"cra:boletos"},{l:"🔐 Portal do Aluno",a:"cra:portal"},{l:"🏠 Menu principal",a:"inicio"}])}
+function nae(){placeholder("🤝 NAE — Núcleo de Apoio ao Estudante","<p>O NAE dá aquele apoio massa ao estudante em questões acadêmicas, adaptação e acessibilidade.</p>")}
+function ead(){msg('<h3>🌐 Graduação EaD</h3><p>Conheça as opções de graduação a distância e consulte informações sobre inscrição e atendimento.</p><div class="card"><span><strong>Site/Link:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"💼 Falar com o Comercial",a:"comercial"},{l:"💬 Tutoria DOL",a:"dol"},{l:"🏠 Menu principal",a:"inicio"}])}
+function dol(){placeholder("💬 Tutoria DOL","<p>Esse canal lhe dá uma força nas dúvidas sobre disciplinas on-line, ambiente virtual e acompanhamento acadêmico digital.</p>")}
+function comercial(){msg('<h3>💼 Comercial</h3><p>O Comercial lhe orienta sobre cursos, mensalidades, bolsas, descontos, documentos e matrícula. É de boa, escolha uma opção.</p><div class="card"><span><strong>Telefone:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span><span><strong>Horário:</strong> XXXXXXXXXXXXXX</span><span><strong>Local:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"💰 Mensalidades e bolsas",a:"com:bolsas"},{l:"📄 Documentação",a:"com:docs"},{l:"🎓 Formas de ingresso",a:"ingresso"},{l:"📅 Matrícula",a:"com:matricula"},{l:"🏠 Menu principal",a:"inicio"}])}
+function ingresso(){msg('<h3>🎓 Formas de ingresso</h3><p><span class="tag">Vestibular</span><span class="tag">ENEM</span><span class="tag">Transferência</span><span class="tag">Portador de diploma</span></p>');opts([{l:"Vestibular",a:"ing:vest"},{l:"ENEM",a:"ing:enem"},{l:"Transferência",a:"ing:transf"},{l:"Portador de diploma",a:"ing:diploma"},{l:"💼 Comercial",a:"comercial"}])}
+function ubiqua(){msg('<h3>📚 Ubíqua</h3><p>O Projeto Ubíqua reúne recursos digitais e novas formas de ensinar e aprender, integrando experiências presenciais e on-line.</p><p><a class="linkbtn" href="https://ubiqua.uninassau.edu.br" target="_blank" rel="noopener noreferrer">📚 Acessar o Projeto Ubíqua</a></p><div class="card"><span><strong>Suporte:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"🏠 Menu principal",a:"inicio"}])}
+function peixe(){msg('<h3>🎤 Peixe 30</h3><p>O Peixe 30 é uma plataforma de relacionamento e desenvolvimento profissional por meio de vídeos curtos, networking e divulgação de experiências.</p><p><a class="linkbtn" href="https://peixe30.com/" target="_blank" rel="noopener noreferrer">🎤 Acessar o Peixe 30</a></p><div class="card"><span><strong>Informações institucionais:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"🏠 Menu principal",a:"inicio"}])}
+function iesplay(){msg('<h3>▶️ IES Play</h3><p>A IES Play concentra atividades práticas, aulas virtuais e recursos de aprendizagem de diferentes áreas do conhecimento.</p><p><a class="linkbtn" href="https://play.uninassau.edu.br/" target="_blank" rel="noopener noreferrer">▶️ Acessar a IES Play</a></p><div class="card"><span><strong>Suporte:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"🏠 Menu principal",a:"inicio"}])}
+function direcao(){placeholder("🏛️ Direção da Unidade Salvador","<p>Esse é o canal institucional da Direção para orientações e encaminhamentos da unidade. Se ligue nos dados abaixo.</p>")}
+function generic(title,text){msg(`<h3>${title}</h3><p>${text}</p><div class="card"><span><strong>Atendimento:</strong> XXXXXXXXXXXXXX</span></div><p>Pronto! Se precisar de mais alguma coisa, é só chamar. Tô por aqui. 😊</p>`);opts([{l:"↩️ Voltar",a:"inicio"}])}
+function handle(a){
+if(a==="inicio")return menu();if(a==="cursos")return coursesMenu();if(a==="presencial")return presencial();if(a==="cra")return cra();if(a==="nae")return nae();if(a==="coord")return coordMenu();if(a==="ead")return ead();if(a==="dol")return dol();if(a==="comercial")return comercial();if(a==="ubiqua")return ubiqua();if(a==="peixe")return peixe();if(a==="iesplay")return iesplay();if(a==="direcao")return direcao();if(a==="ingresso")return ingresso();
+if(a==="pos")return generic("🎓 Pós-Graduação","Consulte as opções de especialização e condições de ingresso.");if(a==="tecnicos")return generic("🛠️ Cursos Técnicos","Consulte os cursos técnicos disponíveis e as condições de matrícula.");
+if(a.startsWith("curso:"))return course(a.slice(6));if(a.startsWith("coord:"))return coord(a.slice(6));
+if(a.startsWith("cra:"))return generic("🗂️ Atendimento CRA","A CRA orientará você sobre este serviço acadêmico.");
+if(a.startsWith("com:"))return generic("💼 Comercial","Para informações atualizadas, fale com um consultor da unidade.");
+if(a.startsWith("ing:"))return generic("🎓 Forma de ingresso","Pegue a visão das regras, documentos e condições com o pessoal do Comercial.");
+}
+function text(q){const n=norm(q);const found=Object.keys(courses).find(x=>n.includes(norm(x)));if(found)return n.includes("coorden")?coord(found):course(found);if(n==="voltar"||n.includes("menu")||n.includes("inicio"))return menu();if(n.includes("cra"))return cra();if(n.includes("nae"))return nae();if(n.includes("direcao"))return direcao();if(n.includes("coorden"))return coordMenu();if(n.includes("tutoria")||n.includes("dol"))return dol();if(n.includes("ubiqua"))return ubiqua();if(n.includes("peixe"))return peixe();if(n.includes("ies play")||n.includes("iesplay"))return iesplay();if(n.includes("ead"))return ead();if(/comercial|mensalidade|bolsa|desconto|preco|valor|matricula/.test(n))return comercial();if(/enem|vestibular|transferencia|diploma|ingresso/.test(n))return ingresso();if(/curso|graduacao|pos|tecnico/.test(n))return coursesMenu();msg("<p>Eita... acho que eu não peguei a visão dessa pergunta. 😅 Pode escrever de outro jeitinho ou escolher uma das opções aqui embaixo.</p>");opts(mainOptions)}
+chat.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;msg(b.textContent.trim(),"user");type(()=>handle(b.dataset.a))});
+document.getElementById("form").addEventListener("submit",e=>{
+e.preventDefault();
+const q=input.value.trim();
+if(!q)return;
+msg(q,"user");
+input.value="";
+if(awaitingName){receiveName(q);return}
+type(()=>text(q))
+});
+document.getElementById("home").onclick=()=>awaitingName?askName():menu;
+document.getElementById("reset").onclick=()=>{chat.innerHTML="";userName="";awaitingName=true;start()};
+start();
+</script>
+</body></html>
