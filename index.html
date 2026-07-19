@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#071d49">
 <link rel="icon" type="image/svg+xml" href="https://logo.uninassau.edu.br/img/svg/favicon_uninassau.svg">
-<title>Betânia | UNINASSAU Salvador</title>
+<title>Karol | UNINASSAU Salvador</title>
 <style>
 :root{--navy:#071d49;--blue:#123b82;--gold:#f2b705;--bg:#edf2f8;--line:#dce4ef;--text:#172033;--muted:#667085;--bot:#f3f5f8;--user:#dce9ff}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:16px;font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top right,rgba(242,183,5,.2),transparent 26rem),linear-gradient(145deg,#e8eef7,#f8fafc);color:var(--text)}
@@ -21,11 +20,15 @@ header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;pad
 form{display:grid;grid-template-columns:1fr auto;gap:9px;padding:12px;border-top:1px solid var(--line)}input{border:1px solid var(--line);border-radius:13px;padding:13px 14px;outline:0}input:focus{border-color:#9eb5d7;box-shadow:0 0 0 3px #edf3ff}.send{border:0;border-radius:13px;background:var(--gold);color:var(--navy);font-weight:900;min-width:50px;font-size:18px}
 .typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#98a2b3;margin:0 2px;animation:pulse 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,70%,100%{opacity:.3;transform:none}35%{opacity:1;transform:translateY(-3px)}}
 @media(max-width:640px){body{padding:0}.app{height:100vh;border-radius:0}#chat{padding:14px 11px}.bubble{max-width:89%}.options{margin-left:0}.brand small{display:none}}
+
+.external-link{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border-radius:12px;background:var(--navy);color:#fff!important;text-decoration:none;font-weight:700}
+.external-link:hover{filter:brightness(1.08)}
+
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="brand"><div class="logo"><img src="https://logo.uninassau.edu.br/img/svg/uninassau_n.svg" alt="UNINASSAU" onerror="this.style.display='none';this.parentElement.classList.add('logo-fallback')"></div><div><b>Betânia</b><small>Tô por aqui pra lhe dar uma força</small></div></div><div class="actions"><button class="headbtn" id="home">Início</button><button class="headbtn" id="reset">Reiniciar</button></div></header>
+<header><div class="brand"><div class="logo"><img src="https://logo.uninassau.edu.br/img/svg/uninassau_n.svg" alt="UNINASSAU" onerror="this.style.display='none';this.parentElement.classList.add('logo-fallback')"></div><div><b>Karol</b><small>Tô por aqui pra lhe dar uma força</small></div></div><div class="actions"><button class="headbtn" id="home">Início</button><button class="headbtn" id="reset">Reiniciar</button></div></header>
 <main id="chat" aria-live="polite"></main>
 <form id="form"><input id="input" autocomplete="off" placeholder="Digite sua pergunta ou escolha uma opção..."><button class="send">➤</button></form>
 </div>
@@ -52,7 +55,7 @@ opts(mainOptions)
 }
 function askName(){
 awaitingName=true;
-type(()=>msg("<h3>Ô, seja muito bem-vindo(a) à UNINASSAU Salvador! 😊</h3><p>Eu sou Betânia. Tô aqui pra lhe dar uma força no que precisar.</p><p>Antes da gente começar esse bate-papo, me diga uma coisa: como você se chama?</p>"))
+type(()=>msg("<h3>Ô, seja muito bem-vindo(a) à UNINASSAU Salvador! 😊</h3><p>Eu sou Karol. Tô aqui pra lhe dar uma força no que precisar.</p><p>Antes da gente começar esse bate-papo, me diga uma coisa: como você se chama?</p>"))
 }
 function receiveName(name){
 userName=String(name||"").trim().split(/\s+/).slice(0,3).join(" ");
@@ -69,7 +72,152 @@ function course(n){const c=courses[n];msg(`<h3>${esc(c.icon)} ${esc(n)}</h3><p>O
 function placeholder(title,extra=""){msg(`<h3>${title}</h3>${extra}<div class="card"><span><strong>Coordenador(a):</strong> XXXXXXXXXXXXXX</span><span><strong>Telefone:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span><span><strong>Horário de atendimento:</strong> XXXXXXXXXXXXXX</span></div>`);opts([{l:"🏠 Menu principal",a:"inicio"}])}
 function coordMenu(){msg("<h3>👩‍🏫 Coordenações de Curso</h3><p>Escolha o curso:</p>");opts(Object.entries(courses).map(([n,c])=>({l:c.icon+" "+n,a:"coord:"+n})).concat([{l:"🏠 Menu principal",a:"inicio"}]))}
 function coord(n){placeholder("Coordenação de "+esc(n),"<p>Consulte os dados oficiais e o horário de atendimento da coordenação.</p>")}
-function cra(){msg('<h3>🗂️ CRA — Central de Relacionamento com o Aluno</h3><p>A CRA lhe ajuda com matrícula, documentos, boletos, requerimentos, renovação, disciplinas e acesso aos serviços acadêmicos.</p><div class="card"><span><strong>Telefone:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span><span><strong>Horário:</strong> XXXXXXXXXXXXXX</span><span><strong>Local:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"📄 Documentos e requerimentos",a:"cra:docs"},{l:"💳 Boletos e vencimentos",a:"cra:boletos"},{l:"🔐 Portal do Aluno",a:"cra:portal"},{l:"🏠 Menu principal",a:"inicio"}])}
+const craVideos={
+"chamado":{
+titulo:"Como abrir um chamado",
+url:"https://www.youtube.com/watch?v=7phq1M5-bFI",
+texto:"Aprenda o passo a passo para registrar um chamado acadêmico."
+},
+"primeiro-acesso":{
+titulo:"Primeiro acesso ao Portal Acadêmico do Aluno",
+url:"https://www.youtube.com/watch?v=KsqSZANkAY4&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=1",
+texto:"Veja como realizar o primeiro acesso ao Portal Acadêmico."
+},
+"senha":{
+titulo:"Alterar a senha do Portal do Aluno",
+url:"https://www.youtube.com/watch?v=yCxyt8l85Ig",
+texto:"Confira como alterar ou atualizar sua senha de acesso."
+},
+"renovacao":{
+titulo:"Renovação de matrícula",
+url:"https://www.youtube.com/watch?v=dU4paExDttI&t=20s",
+texto:"Veja como fazer sua renovação de matrícula."
+},
+"vencimento":{
+titulo:"Alteração do vencimento do boleto",
+url:"https://www.youtube.com/watch?v=cZYIWJ6khyM&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=3",
+texto:"Aprenda como solicitar a alteração da data de vencimento."
+},
+"teams":{
+titulo:"Acessando a Sala Teams",
+url:"https://www.youtube.com/watch?v=gWpO5NwMtsU&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=4",
+texto:"Veja como acessar sua sala no Microsoft Teams."
+},
+"portal":{
+titulo:"Conheça o Portal Acadêmico do Aluno",
+url:"https://www.youtube.com/watch?v=sAsoe0XCBd0&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=7",
+texto:"Conheça os principais recursos disponíveis no Portal Acadêmico."
+},
+"documentos":{
+titulo:"Emissão de documentos pelo Portal do Aluno",
+url:"https://www.youtube.com/watch?v=v2XCc6aPCtY&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=8",
+texto:"Aprenda como emitir documentos acadêmicos pelo portal."
+},
+"atividades":{
+titulo:"Registro e acompanhamento de Atividades Complementares",
+url:"https://www.youtube.com/watch?v=i3NLoFC8BbE&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=9",
+texto:"Veja como registrar e acompanhar suas Atividades Complementares."
+},
+"disciplinas":{
+titulo:"Inclusão de disciplinas",
+url:"https://www.youtube.com/watch?v=rzzHoB21D0k&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=10",
+texto:"Confira como realizar a inclusão de disciplinas."
+},
+"blackboard":{
+titulo:"Acessar o AVA — Blackboard",
+url:"https://www.youtube.com/watch?v=QRN3EyZ4-OQ&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=12",
+texto:"Aprenda a entrar no Ambiente Virtual de Aprendizagem Blackboard."
+},
+"hibridas":{
+titulo:"Acessando o AVA — Disciplinas Híbridas",
+url:"https://www.youtube.com/watch?v=k8a7gGS7nQE&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=13",
+texto:"Veja como acessar as disciplinas híbridas no AVA."
+}
+};
+
+function cra(){
+msg(`<h3>🗂️ CRA — Central de Relacionamento com o Aluno</h3>
+<p>A CRA lhe ajuda com matrícula, documentos, boletos, requerimentos, renovação, disciplinas e acesso aos serviços acadêmicos.</p>
+<div class="card">
+<span><strong>🕒 Horário de atendimento</strong></span>
+<span>Segunda a sexta-feira, das <strong>12h00 às 22h00</strong>.</span>
+<span>Sábado, das <strong>08h00 às 13h00</strong>.</span>
+</div>
+<p>Ou, se preferir, pode assistir a um dos nossos vídeos didáticos. Escolha uma opção abaixo. 👇🏼</p>`);
+opts([
+{l:"🎥 Vídeos didáticos",a:"cra:videos"},
+{l:"📞 Canais de atendimento",a:"cra:contatos"},
+{l:"❓ Perguntas frequentes",a:"cra:faq"},
+{l:"🏠 Menu principal",a:"inicio"}
+])
+}
+
+function craVideoMenu(){
+msg("<h3>🎥 Vídeos didáticos da CRA</h3><p>Escolha o assunto que deseja consultar:</p>");
+opts([
+{l:"📄 Como abrir um chamado",a:"cra-video:chamado"},
+{l:"🔑 Primeiro acesso ao Portal",a:"cra-video:primeiro-acesso"},
+{l:"🔒 Alterar a senha",a:"cra-video:senha"},
+{l:"📚 Renovação de matrícula",a:"cra-video:renovacao"},
+{l:"💳 Alterar vencimento do boleto",a:"cra-video:vencimento"},
+{l:"💻 Acessar a Sala Teams",a:"cra-video:teams"},
+{l:"👨‍🎓 Conhecer o Portal Acadêmico",a:"cra-video:portal"},
+{l:"📑 Emitir documentos",a:"cra-video:documentos"},
+{l:"📋 Atividades Complementares",a:"cra-video:atividades"},
+{l:"➕ Inclusão de disciplinas",a:"cra-video:disciplinas"},
+{l:"🎓 Acessar o Blackboard",a:"cra-video:blackboard"},
+{l:"🌐 AVA — Disciplinas híbridas",a:"cra-video:hibridas"},
+{l:"⬅️ Voltar para CRA",a:"cra"},
+{l:"🏠 Menu principal",a:"inicio"}
+])
+}
+
+function craVideo(id){
+const v=craVideos[id];
+if(!v)return craVideoMenu();
+msg(`<h3>▶️ ${esc(v.titulo)}</h3>
+<p>${esc(v.texto)}</p>
+<p><a href="${esc(v.url)}" target="_blank" rel="noopener noreferrer" class="external-link">▶️ Assistir ao vídeo no YouTube</a></p>`);
+opts([
+{l:"🎥 Ver outro vídeo",a:"cra:videos"},
+{l:"🗂️ Voltar para CRA",a:"cra"},
+{l:"🏠 Menu principal",a:"inicio"}
+])
+}
+
+function craContatos(){
+msg(`<h3>📞 Canais de atendimento da CRA</h3>
+<div class="card">
+<span><strong>Telefone:</strong> XXXXXXXXXXXXXX</span>
+<span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span>
+<span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span>
+<span><strong>Horário:</strong> segunda a sexta-feira, das 12h00 às 22h00; sábado, das 08h00 às 13h00.</span>
+</div>
+<p>Pronto! Quando você inserir os contatos oficiais, eles aparecerão aqui para o aluno.</p>`);
+opts([
+{l:"🎥 Vídeos didáticos",a:"cra:videos"},
+{l:"❓ Perguntas frequentes",a:"cra:faq"},
+{l:"⬅️ Voltar para CRA",a:"cra"},
+{l:"🏠 Menu principal",a:"inicio"}
+])
+}
+
+function craFaq(){
+msg(`<h3>❓ Perguntas frequentes da CRA</h3>
+<div class="card">
+<span><strong>Como solicitar documentos?</strong><br>O pedido deve ser realizado pelos canais acadêmicos disponíveis no Portal do Aluno.</span>
+<span><strong>Como acompanhar um requerimento?</strong><br>Acompanhe o protocolo pelo Portal Acadêmico ou consulte a CRA.</span>
+<span><strong>Como resolver dúvidas sobre boletos?</strong><br>Consulte o Portal do Aluno ou procure a CRA dentro do horário de atendimento.</span>
+<span><strong>Como incluir disciplinas?</strong><br>Assista ao vídeo disponível no menu de vídeos didáticos ou procure a CRA.</span>
+</div>`);
+opts([
+{l:"🎥 Vídeos didáticos",a:"cra:videos"},
+{l:"📞 Canais de atendimento",a:"cra:contatos"},
+{l:"⬅️ Voltar para CRA",a:"cra"},
+{l:"🏠 Menu principal",a:"inicio"}
+])
+}
+
 function nae(){placeholder("🤝 NAE — Núcleo de Apoio ao Estudante","<p>O NAE dá aquele apoio massa ao estudante em questões acadêmicas, adaptação e acessibilidade.</p>")}
 function ead(){msg('<h3>🌐 Graduação EaD</h3><p>Conheça as opções de graduação a distância e consulte informações sobre inscrição e atendimento.</p><div class="card"><span><strong>Site/Link:</strong> XXXXXXXXXXXXXX</span><span><strong>WhatsApp:</strong> XXXXXXXXXXXXXX</span><span><strong>E-mail:</strong> XXXXXXXXXXXXXX</span></div>');opts([{l:"💼 Falar com o Comercial",a:"comercial"},{l:"💬 Tutoria DOL",a:"dol"},{l:"🏠 Menu principal",a:"inicio"}])}
 function dol(){placeholder("💬 Tutoria DOL","<p>Esse canal lhe dá uma força nas dúvidas sobre disciplinas on-line, ambiente virtual e acompanhamento acadêmico digital.</p>")}
@@ -112,7 +260,7 @@ function handle(a){
 if(a==="inicio")return menu();if(a==="cursos")return coursesMenu();if(a==="presencial")return presencial();if(a==="cra")return cra();if(a==="nae")return nae();if(a==="coord")return coordMenu();if(a==="ead")return ead();if(a==="dol")return dol();if(a==="comercial")return comercial();if(a==="ubiqua")return ubiqua();if(a==="peixe")return peixe();if(a==="iesplay")return iesplay();if(a==="direcao")return direcao();if(a==="clinicas")return clinicas();if(a==="ingresso")return ingresso();
 if(a==="pos")return generic("🎓 Pós-Graduação","Consulte as opções de especialização e condições de ingresso.");if(a==="tecnicos")return generic("🛠️ Cursos Técnicos","Consulte os cursos técnicos disponíveis e as condições de matrícula.");
 if(a.startsWith("curso:"))return course(a.slice(6));if(a.startsWith("coord:"))return coord(a.slice(6));if(a.startsWith("clinica:"))return clinica(a.slice(8));
-if(a.startsWith("cra:"))return generic("🗂️ Atendimento CRA","A CRA orientará você sobre este serviço acadêmico.");
+if(a==="cra:videos")return craVideoMenu();if(a==="cra:contatos")return craContatos();if(a==="cra:faq")return craFaq();if(a.startsWith("cra-video:"))return craVideo(a.slice(10));
 if(a.startsWith("com:"))return generic("💼 Comercial","Para informações atualizadas, fale com um consultor da unidade.");
 if(a.startsWith("ing:"))return generic("🎓 Forma de ingresso","Pegue a visão das regras, documentos e condições com o pessoal do Comercial.");
 }
